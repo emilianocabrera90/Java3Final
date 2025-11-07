@@ -1,1 +1,15 @@
-echo "node_modules\n.env" > .gitignore
+# Node.js dependencies
+node_modules/
+
+# Entorno y secretos
+.env
+
+# Logs
+*.log
+
+# Carpeta de builds
+dist/
+
+# Archivos del sistema
+.DS_Store
+
