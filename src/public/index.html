@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecommerce</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Productos Disponibles</h1>
+    <div id="product-list"></div>
+  </div>
+  <script>
+    fetch('/api/products')
+      .then(res => res.json())
+      .then(products => {
+        const container = document.getElementById('product-list');
+        container.innerHTML = products.map(p => `
+          <div class="product-card">
+            <h3>${p.title}</h3>
+            <p>${p.description}</p>
+            <p>Precio: $${p.price}</p>
+          </div>
+        `).join('');
+      });
+  </script>
+</body>
+</html>

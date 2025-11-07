@@ -1,0 +1,90 @@
+paths:
+  /carts:
+    get:
+      summary: Obtiene todos los carritos
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Lista de carritos obtenida exitosamente
+
+    post:
+      summary: Crea un nuevo carrito vacío
+      tags:
+        - Carts
+      responses:
+        "201":
+          description: Carrito creado correctamente
+
+  /carts/{id}:
+    get:
+      summary: Obtiene un carrito por ID
+      tags:
+        - Carts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Carrito obtenido exitosamente
+        "404":
+          description: Carrito no encontrado
+
+    delete:
+      summary: Elimina un carrito por ID
+      tags:
+        - Carts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Carrito eliminado correctamente
+
+  /carts/{cid}/product/{pid}:
+    post:
+      summary: Agrega un producto al carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Producto agregado al carrito correctamente
+        "404":
+          description: Carrito o producto no encontrado
+
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 6472b8d2f5a3c5a6e29b7a10
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              product:
+                type: string
+                example: 64a2b6e1d2f4b6a7e89b7b02
+              quantity:
+                type: integer
+                example: 3
